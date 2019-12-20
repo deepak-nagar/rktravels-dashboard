@@ -36,7 +36,7 @@
               <span class="availability-status online"></span>
             </div>
             <div class="nav-profile-text">
-              <p class="mb-1 text-black">David Greymaax</p>
+              <p class="mb-1 text-black">Admin</p>
             </div>
           </a>
           <div
@@ -98,66 +98,52 @@
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="page-header">
-          <h3 class="page-title">Service Form</h3>
+          <h3 class="page-title">Category</h3>
         </div>
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample">
+                <h4 class="card-title">Category</h4>
+                <p class="card-description">
+                  Add here Types (e.g Car, Volvo)
+                </p>
+                <alert></alert>
+                <form
+                  class="forms-sample"
+                  [formGroup]="categoryForm"
+                  (ngSubmit)="onSubmit()"
+                >
                   <div class="form-group">
-                    <label for="exampleInputName">Name</label>
                     <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputName"
-                      placeholder="Email"
+                      formControlName="category"
+                      class="form-control form-control-lg"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.category.errors
+                      }"
+                      placeholder="Category"
                     />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleSelectCategory">Select Category</label>
-                    <select class="form-control" id="exampleSelectCategory">
-                      <option>Car</option>
-                      <option>volvo</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail3">Price/Km</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail3"
-                      placeholder="Email"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <label>Multiple Image upload</label>
-                    <input
-                      type="file"
-                      name="img[]"
-                      class="file-upload-default"
-                    />
-                    <div class="input-group col-xs-12">
-                      <input
-                        type="file"
-                        class="form-control file-upload-info"
-                        placeholder="Upload Image"
-                      />
+                    <div
+                      *ngIf="submitted && f.category.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.category.errors.required">
+                        Category is required
+                      </div>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleTextarea1">Service Detail</label>
-                    <textarea
-                      class="form-control"
-                      id="exampleTextarea1"
-                      rows="4"
-                    ></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-gradient-primary mr-2">
+                  <button
+                    [disabled]="loading"
+                    class="btn btn-gradient-primary mr-2"
+                  >
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm mr-1"
+                    ></span>
                     Submit
                   </button>
+                  <!-- <button class="btn btn-light">Cancel</button> -->
                 </form>
               </div>
             </div>
@@ -166,23 +152,7 @@
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:../../partials/_footer.html -->
-      <footer class="footer">
-        <div
-          class="d-sm-flex justify-content-center justify-content-sm-between"
-        >
-          <span
-            class="text-muted text-center text-sm-left d-block d-sm-inline-block"
-            >Copyright © 2017
-            <a href="https://www.bootstrapdash.com/" target="_blank"
-              >BootstrapDash</a
-            >. All rights reserved.</span
-          >
-          <span
-            class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
-            >Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i
-          ></span>
-        </div>
-      </footer>
+      <footer class="footer"></footer>
       <!-- partial -->
     </div>
     <!-- main-panel ends -->

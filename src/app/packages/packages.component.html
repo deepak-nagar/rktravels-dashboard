@@ -74,7 +74,7 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/categories'">
+          <a class="nav-link" [routerLink]="'/dashboard'">
             <span class="menu-title">Category</span>
             <i class="mdi mdi-book-multiple menu-icon"></i>
           </a>
@@ -98,36 +98,49 @@
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="page-header">
-          <h3 class="page-title">Service Form</h3>
+          <h3 class="page-title">Package Form</h3>
         </div>
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
+                <h4 class="card-title">Service</h4>
+
                 <form class="forms-sample">
                   <div class="form-group">
-                    <label for="exampleInputName">Name</label>
+                    <label for="exampleInputPackage">Package Name</label>
                     <input
-                      type="email"
+                      type="text"
                       class="form-control"
-                      id="exampleInputName"
-                      placeholder="Email"
+                      id="exampleInputPackage"
+                      placeholder="Package Name"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="exampleSelectCategory">Select Category</label>
-                    <select class="form-control" id="exampleSelectCategory">
-                      <option>Car</option>
-                      <option>volvo</option>
-                    </select>
+                    <label for="exampleInputPackage">Package Price</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputPackage"
+                      placeholder="5000"
+                    />
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Price/Km</label>
+                    <label for="exampleInputPackage">Tour Location</label>
                     <input
-                      type="email"
+                      type="text"
                       class="form-control"
-                      id="exampleInputEmail3"
-                      placeholder="Email"
+                      id="exampleInputPackage"
+                      placeholder="Indore To Bhopal"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPackage">Date</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputPackage"
+                      placeholder="2-2-2020 To 5-7-2020"
                     />
                   </div>
 
@@ -148,7 +161,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleTextarea1">Service Detail</label>
+                    <label for="exampleTextarea1">Package Detail</label>
                     <textarea
                       class="form-control"
                       id="exampleTextarea1"

@@ -23,10 +23,10 @@ export class AuthenticationService {
 
   login(email: string, password: string) {
     return this.http
-      .post<any>(
-        `https://cors-anywhere.herokuapp.com/https://www.rktravelsindore.com/backend/api/login`,
-        { email, password }
-      )
+      .post<any>(`http://localhost:8000/api/login`, {
+        email,
+        password
+      })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
