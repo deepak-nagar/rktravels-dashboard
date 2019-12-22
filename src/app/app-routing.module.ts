@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { LoginComponent } from "./login";
 import { CategoryComponent, CategoryListComponent } from "./category";
-import { ServicesComponent } from "./services";
+import { ServicesComponent, ServicesListComponent } from "./services";
 import { AuthGuard } from "./_helpers";
 import { PackagesComponent } from "./packages";
 const routes: Routes = [
@@ -18,10 +18,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "services",
+    path: "service",
     component: ServicesComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: "services",
+    component: ServicesListComponent,
+    canActivate: [AuthGuard]
+  },
+
   {
     path: "packages",
     component: PackagesComponent,

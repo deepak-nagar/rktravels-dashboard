@@ -11,10 +11,12 @@ import { JwtInterceptor, ErrorInterceptor } from "./_helpers";
 import { AppComponent } from "./app.component";
 import { CategoryComponent, CategoryListComponent } from "./category";
 import { LoginComponent } from "./login";
-import { ServicesComponent } from "./services";
+import { ServicesComponent, ServicesListComponent } from "./services";
 import { PackagesComponent } from "./packages";
 import { AlertComponent } from "./_components";
 import { DataTableModule } from "ng-angular8-datatable";
+import { NgxDropzoneModule } from "ngx-dropzone";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { DataTableModule } from "ng-angular8-datatable";
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    DataTableModule
+    DataTableModule,
+    NgxDropzoneModule
   ],
   declarations: [
     AppComponent,
@@ -30,7 +33,7 @@ import { DataTableModule } from "ng-angular8-datatable";
     AlertComponent,
     CategoryListComponent,
     CategoryComponent,
-
+    ServicesListComponent,
     ServicesComponent,
     PackagesComponent
   ],

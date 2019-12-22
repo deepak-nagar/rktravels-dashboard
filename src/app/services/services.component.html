@@ -98,64 +98,136 @@
     <div class="main-panel">
       <div class="content-wrapper">
         <div class="page-header">
-          <h3 class="page-title">Service Form</h3>
+          <h3 class="page-title">Services</h3>
         </div>
         <div class="row">
           <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample">
+                <alert></alert>
+                <form
+                  class="forms-sample"
+                  [formGroup]="serviecForm"
+                  (ngSubmit)="onSubmit()"
+                >
                   <div class="form-group">
-                    <label for="exampleInputName">Name</label>
+                    <label for="exampleInputName">Service Name</label>
                     <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputName"
-                      placeholder="Email"
+                      formControlName="service"
+                      class="form-control form-control-lg"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.service.errors
+                      }"
+                      placeholder="Name (e.g. Car Name ,Bus Name)"
                     />
+                    <div
+                      *ngIf="submitted && f.service.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.service.errors.required">
+                        Service is required
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleSelectCategory">Select Category</label>
-                    <select class="form-control" id="exampleSelectCategory">
-                      <option>Car</option>
-                      <option>volvo</option>
+                    <select
+                      class="form-control"
+                      id="exampleSelectCategory"
+                      formControlName="category_id"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.category_id.errors
+                      }"
+                    >
+                      <option
+                        *ngFor="let item of category"
+                        [ngValue]="item.id"
+                        >{{ item.category }}</option
+                      >
                     </select>
+                    <div
+                      *ngIf="submitted && f.category_id.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.category_id.errors.required">
+                        Select Category is required
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Price/Km</label>
+                    <label for="exampleInputPrice">Price/Km</label>
                     <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail3"
-                      placeholder="Email"
+                      type="number"
+                      formControlName="price"
+                      class="form-control form-control-lg"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.price.errors
+                      }"
+                      placeholder="Price"
                     />
+                    <div
+                      *ngIf="submitted && f.price.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.price.errors.required">
+                        Price is required
+                      </div>
+                    </div>
                   </div>
 
                   <div class="form-group">
-                    <label>Multiple Image upload</label>
-                    <input
-                      type="file"
-                      name="img[]"
-                      class="file-upload-default"
-                    />
-                    <div class="input-group col-xs-12">
-                      <input
-                        type="file"
-                        class="form-control file-upload-info"
-                        placeholder="Upload Image"
-                      />
+                    <div
+                      class="custom-dropzone"
+                      ngx-dropzone
+                      [accept]="'image/*'"
+                      (change)="onFilesAdded($event)"
+                    >
+                      <ngx-dropzone-label>
+                        <div>
+                          <h2>Drag and Drop or Click</h2>
+                        </div>
+                      </ngx-dropzone-label>
+
+                      <ngx-dropzone-image-preview
+                        ngProjectAs="ngx-dropzone-preview"
+                        *ngFor="let f of files"
+                        [file]="f"
+                        [removable]="true"
+                        (removed)="onRemove(f)"
+                      >
+                      </ngx-dropzone-image-preview>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleTextarea1">Service Detail</label>
+
                     <textarea
-                      class="form-control"
                       id="exampleTextarea1"
                       rows="4"
+                      formControlName="description"
+                      class="form-control form-control-lg"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.description.errors
+                      }"
                     ></textarea>
+                    <div
+                      *ngIf="submitted && f.description.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.description.errors.required">
+                        Description is required
+                      </div>
+                    </div>
                   </div>
-                  <button type="submit" class="btn btn-gradient-primary mr-2">
+                  <button
+                    [disabled]="loading"
+                    class="btn btn-gradient-primary mr-2"
+                  >
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm mr-1"
+                    ></span>
                     Submit
                   </button>
                 </form>

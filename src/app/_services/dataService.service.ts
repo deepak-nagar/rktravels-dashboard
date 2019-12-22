@@ -11,7 +11,7 @@ export class DataService {
 
   insertCategory(category: string) {
     return this.http
-      .post<any>(`http://localhost:8000/api/category`, { category })
+      .post<any>(`${api.api_url}/category`, { category })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
@@ -29,6 +29,13 @@ export class DataService {
       })
     );
   }
+  allService() {
+    return this.http.get(`${api.api_url}/service/`).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
   deleteCategory(id) {
     const data = {
       _method: "DELETE"
@@ -36,6 +43,28 @@ export class DataService {
     return this.http.post(`${api.api_url}/category/` + id, data).pipe(
       map(res => {
         return res;
+      })
+    );
+  }
+  insertImages(data) {
+    return this.http.post<any>(`${api.api_url}/uploadImages`, data).pipe(
+      map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+        }
+
+        return user;
+      })
+    );
+  }
+  insertService(data) {
+    return this.http.post<any>(`${api.api_url}/service`, data).pipe(
+      map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+        }
+
+        return user;
       })
     );
   }
